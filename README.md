@@ -1,8 +1,25 @@
-# SystemMonitor - Tableau de Bord PC en Temps Réel
+<div align="center">
 
-**SystemMonitor** est une application de surveillance en temps réel des performances d'un ordinateur sous Windows et Linux. Il affiche des informations clés sur l'utilisation du CPU, de la RAM, du disque, du réseau, ainsi que la température et l'utilisation du GPU. L'interface graphique est basée sur **PyQt5** et **PyQtGraph**, offrant des graphiques dynamiques pour suivre l'évolution des ressources système.
+# SystemMonitor
 
-## 📌 Fonctionnalités
+**Un tableau de bord de surveillance PC, en temps réel.**
+
+CPU · Mémoire · Disques · Réseau · Capteurs matériels
+
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)
+![PyQt5](https://img.shields.io/badge/Interface-PyQt5-41CD52)
+![Plateforme](https://img.shields.io/badge/Plateforme-Windows-0078D4?logo=windows&logoColor=white)
+[![Licence](https://img.shields.io/badge/Licence-MIT-64748b)](LICENSE)
+
+[Fonctionnalités](#fonctionnalités) · [Installation](#installation) · [Captures](#captures-décran) · [Limites connues](#limites-connues)
+
+</div>
+
+---
+
+SystemMonitor affiche l'utilisation du processeur, de la mémoire, du disque et du réseau dans une interface **PyQt5 / PyQtGraph**. Les températures et la charge GPU peuvent être récupérées via **OpenHardwareMonitor**, lorsque les capteurs sont disponibles.
+
+## Fonctionnalités
 
 - 🖥 **Surveillance CPU, RAM, Disque et Réseau**  
   - Affichage en temps réel de l'utilisation CPU, RAM et disque.  
@@ -24,61 +41,55 @@
 - 🎨 **Thème Personnalisable**  
   - Interface moderne avec un thème "Azure".  
 
-- 🚀 **Optimisé pour Windows et Linux**  
-  - Utilisation de **WMI** pour récupérer les données sous Windows.  
-  - Compatibilité avec **psutil** et **OpenHardwareMonitor**.  
+- **Collecte des données système** : utilisation de `psutil` ; accès aux capteurs Windows via WMI et OpenHardwareMonitor.
 
-## 🛠 Installation
+## Installation
 
-### 1️⃣ Prérequis
+### Prérequis
 
-Assurez-vous d'avoir **Python 3.8+** installé ainsi que les dépendances suivantes :
+Sous **Windows**, installez Python 3.8+ puis les dépendances suivantes :
 
 ```sh
 pip install psutil pyqt5 pyqtgraph requests wmi
 ```
 
-### 2️⃣ Cloner le projet
+### Cloner le dépôt
 
 ```sh
 git clone https://github.com/neosoda/SystemMonitor.git
 cd SystemMonitor
 ```
 
-### 3️⃣ Lancer l'application
+### Démarrer
 
 Sous **Windows** :
 ```sh
-python system_monitor.py
+python dashboard.py
 ```
 
-Sous **Linux** :
-```sh
-python3 system_monitor.py
-```
+L'exécution native sous Linux n'est **pas garantie** dans l'état actuel du code (import WMI et appels à des API Windows).
 
-## 🔧 Configuration OpenHardwareMonitor
+## Capteurs et OpenHardwareMonitor
 
 L'application utilise **[OpenHardwareMonitor](https://openhardwaremonitor.org/)** pour récupérer la température CPU/GPU sous Windows. Assurez-vous que **OpenHardwareMonitor.exe** est dans le même dossier que le script ou modifiez le chemin dans `get_openhardwaremonitor_path()`.
 
-## 📸 Aperçu
+## Captures d'écran
 
 ![Capture d'écran 2025-03-12 184830](https://github.com/user-attachments/assets/d43e145a-52b3-4253-9dc6-3dcc53bf13e7)
 
 ![Capture d'écran 2025-03-12 184819](https://github.com/user-attachments/assets/c0e38269-0f13-48ba-b6a9-5d66d17f7323)
 
 
-## 🚀 Améliorations Futures
+## Limites connues
 
-- ✅ Ajout d'un mode **sombre** et de nouveaux thèmes.  
-- ✅ Support amélioré pour **Linux** et **MacOS**.  
-- ✅ Export des données en **CSV** ou **JSON**.  
-- ✅ Intégration d'une alerte en cas de surchauffe ou d'utilisation excessive.  
+- Le démarrage d'OpenHardwareMonitor et la collecte WMI utilisent actuellement des API propres à Windows.
+- Les températures CPU/GPU dépendent des capteurs disponibles ; une valeur `N/A` ne signifie pas nécessairement une panne.
+- Le chemin d'OpenHardwareMonitor peut nécessiter une adaptation, notamment pour un exécutable packagé.
 
-## 👨‍💻 Auteur
+## Auteur
 
-Développé par **(https://github.com/neosoda)** 🛠.
+Développé par [neosoda](https://github.com/neosoda).
 
-## 📜 Licence
+## Licence
 
 Ce projet est sous licence **MIT** – vous pouvez l'utiliser librement.
